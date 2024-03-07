@@ -4,6 +4,26 @@ from nltk.util import ngrams
 from collections import defaultdict, Counter
 import random
 
+# PDF reading
+import typing
+
+from borb.pdf import Document
+from borb.pdf import PDF
+from borb.toolkit.text.simple_text_extraction import SimpleTextExtraction
+
+# Summon text from pdf
+
+def read_pdf():
+    d: typing.Optional[Document] = None
+    l: SimpleTextExtraction = SimpleTextExtraction()
+    with open("TestPDF.pdf", "rb") as pdf_in_handle:
+        d = PDF.loads(pdf_in_handle, [l])
+    assert d is not None
+    # print(l.get_text_for_page(0))
+    return (l.get_text())
+
+print(read_pdf())
+
 # Tuple 2 string
 
 def tuple_to_string(sentence):
@@ -67,5 +87,5 @@ def generate_text(starting_words, model, num_words=20):
 # init
 
 starting_words = ("We", "the")
-generated_text = generate_text(starting_words, trigram_model, 300)
-print(generated_text)
+generated_text = generate_text(starting_words, trigram_model, 20)
+# print(generated_text)
