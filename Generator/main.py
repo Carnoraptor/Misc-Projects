@@ -88,4 +88,4 @@ def generate_text(starting_words, model, num_words=20):
 
 starting_words = ("We", "the")
 generated_text = generate_text(starting_words, trigram_model, 20)
-# print(generated_text)
+print(generated_text)
